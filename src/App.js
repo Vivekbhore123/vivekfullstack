@@ -8,7 +8,7 @@ function App() {
   const [listOfFriends, setListOfFriends] = useState([]);
 
   const addFriend = () => {
-    Axios.post("https://mern-beginners.herokuapp.com/addfriend", {
+    Axios.post("https://vivekfirstmern.herokuapp.com/addfriend", {
       name: name,
       age: age,
     }).then((response) => {
@@ -22,20 +22,22 @@ function App() {
   const updateFriend = (id) => {
     const newAge = prompt("Enter new age: ");
 
-    Axios.put("https://mern-beginners.herokuapp.com/update", {
+    Axios.put("https://vivekfirstmern.herokuapp.com/update", {
       newAge: newAge,
       id: id,
     }).then(() => {
       setListOfFriends(
         listOfFriends.map((val) => {
-          return val._id === id ? { _id: id, name: val.name, age: newAge } : val;
+          return val._id === id
+            ? { _id: id, name: val.name, age: newAge }
+            : val;
         })
       );
     });
   };
 
   const deleteFriend = (id) => {
-    Axios.delete(`https://mern-beginners.herokuapp.com/delete/${id}`).then(
+    Axios.delete(`https://vivekfirstmern.herokuapp.com/delete/${id}`).then(
       () => {
         setListOfFriends(
           listOfFriends.filter((val) => {
@@ -47,7 +49,7 @@ function App() {
   };
 
   useEffect(() => {
-    Axios.get("https://mern-beginners.herokuapp.com/read")
+    Axios.get("https://vivekfirstmern.herokuapp.com/read")
       .then((response) => {
         setListOfFriends(response.data);
       })
